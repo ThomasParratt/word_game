@@ -75,7 +75,7 @@ int main(void)
         std::cout << "Attempt " << trys << ": " << std::endl;
         std::vector<std::string> attempts(6);
         std::cin >> attempts[k]; // take word input
-        //validity checks for valid guess e.g. length == 5
+        //also need to check for valid characters
         if (attempts[k].size() != 5)
         {
             std::cout << "Word must be 5 characters long." << std::endl;
