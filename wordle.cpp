@@ -41,7 +41,7 @@ int main(void)
                     {
                         std::cout << "\033[32m" << words[i][j] << "\033[0m"; // prints the correctly guessed characters in green
                     }
-                    else if (answer.find(words[i][j]) != std::string::npos)
+                    else if (answer.find(words[i][j]) != std::string::npos) // I shouldn't be searching the whole string - only the incorrect ones
                     {
                         // orange if character is in word but in wrong place
                         std::cout << "\033[33m" << words[i][j] << "\033[0m";
