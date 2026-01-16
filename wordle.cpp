@@ -17,13 +17,13 @@ int main(void)
         std::cout << words[i] << std::endl; // print all blank words
     }
 
-    for (int i = 0; i < 6; i++) // looping through trys
+    for (int k = 0; k < 6; k++) // looping through trys
     {
         trys++;
         std::cout << std::endl;
-        std::cout << "Attempt " << i + 1 << ": " << std::endl;
-        std::string attempt;
-        std::cin >> attempt; // take word input
+        std::cout << "Attempt " << k + 1 << ": " << std::endl;
+        std::vector<std::string> attempts(6);
+        std::cin >> attempts[k]; // take word input
         //validity checks for valid guess e.g. length == 5
         std::cout << std::endl;
 
@@ -33,16 +33,16 @@ int main(void)
             {
                 for (int j = 0; j < 5; j++) // looping through characters
                 {
-                    if (attempt[j] == answer[j])
+                    if (attempts[k][j] == answer[j])
                     {
                         if (i == trys - 1) // so that we only update the word on the current try
-                            words[i][j] = attempt[j]; // updates the current word to contain the guessed characters
+                            words[i][j] = attempts[k][j]; // updates the current word to contain the guessed characters
                         std::cout << "\033[32m" << words[i][j] << "\033[0m"; // prints the corrected guess characters
                     }
                     else
                     {
                         if (i == trys - 1)
-                            words[i][j] = attempt[j]; // updates the current word to contain the guessed characters
+                            words[i][j] = attempts[k][j]; // updates the current word to contain the guessed characters
                         std::cout << "\033[31m" << words[i][j] << "\033[0m"; // prints the corrected guess characters
                     }
                 }
@@ -52,7 +52,7 @@ int main(void)
                 std::cout << words[i] << std::endl;
         }
 
-        if (words[i] == answer)
+        if (words[k] == answer)
         {
             /*std::cout << std::endl;
             for (int i = 0; i < 6; i++)
