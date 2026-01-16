@@ -33,16 +33,16 @@ int main(void)
             {
                 for (int j = 0; j < 5; j++) // looping through characters
                 {
-                    if (attempts[k][j] == answer[j])
+                    if (i == trys - 1) // so that we only update the word on the current try
                     {
-                        if (i == trys - 1) // so that we only update the word on the current try
-                            words[i][j] = attempts[k][j]; // updates the current word to contain the guessed characters
+                        words[i][j] = attempts[k][j]; // updates the current word to contain the guessed characters
+                    }
+                    if (words[i][j] == answer[j])
+                    {
                         std::cout << "\033[32m" << words[i][j] << "\033[0m"; // prints the correctly guessed characters in green
                     }
                     else
                     {
-                        if (i == trys - 1)
-                            words[i][j] = attempts[k][j]; // updates the current word to contain the guessed characters
                         std::cout << "\033[31m" << words[i][j] << "\033[0m"; // prints the incorrectly guessed characters in red
                     }
                 }
