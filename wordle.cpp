@@ -33,6 +33,25 @@ std::string randomWord()
     return words[dis(gen)];
 }
 
+bool isWord(std::string word)
+{
+    std::ifstream file("words.txt");
+    if (!file)
+    {
+        std::cerr << "Could not open the file!\n";
+        return false;
+    }
+
+    std::string line;
+    while (std::getline(file, line))
+    {
+        if (line == word)
+            return true;
+    }
+
+    return false;
+}
+
 int main(void)
 {
     std::string answer = randomWord();
@@ -53,10 +72,24 @@ int main(void)
     {
         trys++;
         std::cout << std::endl;
-        std::cout << "Attempt " << k + 1 << ": " << std::endl;
+        std::cout << "Attempt " << trys << ": " << std::endl;
         std::vector<std::string> attempts(6);
         std::cin >> attempts[k]; // take word input
         //validity checks for valid guess e.g. length == 5
+        if (attempts[k].size() != 5)
+        {
+            std::cout << "Word must be 5 characters long." << std::endl;
+            trys--;
+            k--;
+            continue;
+        }
+        if (!isWord(attempts[k]))
+        {
+            std::cout << "That's not a word..." << std::endl;
+            trys--;
+            k--;
+            continue;
+        }
         std::cout << std::endl;
 
         for (int i = 0; i < 6; i++) // looping through words
