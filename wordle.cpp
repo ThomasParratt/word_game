@@ -31,20 +31,30 @@ int main(void)
         {
             if (i < trys)
             {
+                std::string tempAnswer = answer;
                 for (int j = 0; j < 5; j++) // looping through characters
                 {
                     if (i == trys - 1) // so that we only update the word on the current try
                     {
                         words[i][j] = attempts[k][j]; // updates the current word to contain the guessed characters
                     }
+                    if (words[i][j] == tempAnswer[j])
+                    {
+                        tempAnswer[j] = '*';
+                    }
+                }
+                std::cout << "\r";
+                for (int j = 0; j < 5; j++) // looping through characters
+                {
                     if (words[i][j] == answer[j])
                     {
                         std::cout << "\033[32m" << words[i][j] << "\033[0m"; // prints the correctly guessed characters in green
                     }
-                    else if (answer.find(words[i][j]) != std::string::npos) // I shouldn't be searching the whole string - only the incorrect ones
+                    else if (size_t pos = tempAnswer.find(words[i][j]); pos != std::string::npos)
                     {
                         // orange if character is in word but in wrong place
                         std::cout << "\033[33m" << words[i][j] << "\033[0m";
+                        tempAnswer[pos] = '*';
                     }
                     else
                     {
