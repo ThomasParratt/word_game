@@ -71,6 +71,10 @@ int main(void)
     for (int k = 0; k < 6; k++) // looping through trys
     {
         trys++;
+        std::cout << "Guess the word in 6 tries." << std::endl;
+        std::cout << "If the letter is displayed in \033[32mgreen\033[0m it is in the correct spot." << std::endl;
+        std::cout << "If the letter is displayed in \033[33morange\033[0m it is in the word but in the wrong spot." << std::endl;
+        std::cout << "If the letter is displayed in \033[31mred\033[0m it is not in the word in any spot." << std::endl;
         std::cout << std::endl;
         std::cout << "Attempt " << trys << ": " << std::endl;
         std::vector<std::string> attempts(6);
