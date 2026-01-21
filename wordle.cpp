@@ -5,7 +5,7 @@
 
 std::string randomWord()
 {
-    std::ifstream file("words.txt");
+    std::ifstream file("answers.txt");
     if (!file) 
     {
         std::cerr << "Could not open the file!\n";
@@ -63,18 +63,14 @@ int main(void)
         words.push_back("_____"); // initialise all words as blank to start
     }
     std::cout << std::endl;
-    for (int i = 0; i < 6; i++)
-    {
-        std::cout << words[i] << std::endl; // print all blank words
-    }
+    std::cout << "Guess the word in 6 tries." << std::endl;
+    std::cout << "If the letter is displayed in \033[32mgreen\033[0m it is in the correct spot." << std::endl;
+    std::cout << "If the letter is displayed in \033[33morange\033[0m it is in the word but in the wrong spot." << std::endl;
+    std::cout << "If the letter is displayed in \033[31mred\033[0m it is not in the word in any spot." << std::endl;
 
     for (int k = 0; k < 6; k++) // looping through trys
     {
         trys++;
-        std::cout << "Guess the word in 6 tries." << std::endl;
-        std::cout << "If the letter is displayed in \033[32mgreen\033[0m it is in the correct spot." << std::endl;
-        std::cout << "If the letter is displayed in \033[33morange\033[0m it is in the word but in the wrong spot." << std::endl;
-        std::cout << "If the letter is displayed in \033[31mred\033[0m it is not in the word in any spot." << std::endl;
         std::cout << std::endl;
         std::cout << "Attempt " << trys << ": " << std::endl;
         std::vector<std::string> attempts(6);
@@ -89,7 +85,7 @@ int main(void)
         }
         if (!isWord(attempts[k]))
         {
-            std::cout << "That's not a word..." << std::endl;
+            std::cout << attempts[k] << " is not a valid word..." << std::endl;
             trys--;
             k--;
             continue;
