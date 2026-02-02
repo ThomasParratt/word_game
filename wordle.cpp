@@ -52,12 +52,9 @@ bool isWord(std::string word)
     return false;
 }
 
-void displayKeyboard()
+void displayKeyboard(std::vector<std::string> chars)
 {
-    std::vector<char> chars = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '\n',
-                                'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', '\n',
-                                    ' ', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
-    for (char c : chars)
+    for (std::string c : chars)
     {
         std::cout << c << ' ';
     }
@@ -67,6 +64,9 @@ void displayKeyboard()
 int main(void)
 {
     std::string answer = randomWord();
+    std::vector<std::string> chars = {"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "\n",
+                                        "a", "s", "d", "f", "g", "h", "j", "k", "l", "\n",
+                                            " ", "z", "x", "c", "v", "b", "n", "m"};
     std::vector<std::string> words; // will be the vector of 6 words
     int trys = 0;
     
@@ -126,6 +126,13 @@ int main(void)
                     if (words[i][j] == answer[j])
                     {
                         std::cout << "\033[32m" << words[i][j] << "\033[0m"; // prints the correctly guessed characters in green
+                        /*for (std::string c : chars)
+                        {
+                            if (c == toString(words[i][j]))
+                                c = "\033[31m" + c + "\033[0m";
+                            else
+                                std::cout << c;
+                        }*/
                     }
                     else if (size_t pos = tempAnswer.find(words[i][j]); pos != std::string::npos)
                     {
@@ -144,8 +151,8 @@ int main(void)
                 std::cout << words[i] << std::endl;
         }
 
-        displayKeyboard();
-        
+        displayKeyboard(chars);
+
         if (words[k] == answer)
         {
             std::cout << "WELL DONE!" << std::endl;
