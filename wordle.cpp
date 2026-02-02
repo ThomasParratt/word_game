@@ -52,6 +52,18 @@ bool isWord(std::string word)
     return false;
 }
 
+void displayKeyboard()
+{
+    std::vector<char> chars = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '\n',
+                                'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', '\n',
+                                    ' ', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
+    for (char c : chars)
+    {
+        std::cout << c << ' ';
+    }
+    std::cout << std::endl;
+}
+
 int main(void)
 {
     std::string answer = randomWord();
@@ -132,6 +144,8 @@ int main(void)
                 std::cout << words[i] << std::endl;
         }
 
+        displayKeyboard();
+        
         if (words[k] == answer)
         {
             std::cout << "WELL DONE!" << std::endl;
