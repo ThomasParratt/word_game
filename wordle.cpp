@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <random>
+#include <algorithm>
 
 std::string randomWord()
 {
@@ -126,23 +127,25 @@ int main(void)
                     if (words[i][j] == answer[j])
                     {
                         std::cout << "\033[32m" << words[i][j] << "\033[0m"; // prints the correctly guessed characters in green
-                        /*for (std::string c : chars)
-                        {
-                            if (c == toString(words[i][j]))
-                                c = "\033[31m" + c + "\033[0m";
-                            else
-                                std::cout << c;
-                        }*/
+                        std::string locate(1, words[i][j]);
+                        std::string newValue = "\033[32m" + locate + "\033[0m";
+                        std::replace(chars.begin(), chars.end(), locate, newValue);
                     }
                     else if (size_t pos = tempAnswer.find(words[i][j]); pos != std::string::npos)
                     {
                         // orange if character is in word but in wrong place
                         std::cout << "\033[33m" << words[i][j] << "\033[0m";
+                        std::string locate(1, words[i][j]);
+                        std::string newValue = "\033[33m" + locate + "\033[0m";
+                        std::replace(chars.begin(), chars.end(), locate, newValue);
                         tempAnswer[pos] = '*';
                     }
                     else
                     {
                         std::cout << "\033[31m" << words[i][j] << "\033[0m"; // prints the incorrectly guessed characters in red
+                        std::string locate(1, words[i][j]);
+                        std::string newValue = "\033[31m" + locate + "\033[0m";
+                        std::replace(chars.begin(), chars.end(), locate, newValue);
                     }
                 }
                 std::cout << std::endl;
